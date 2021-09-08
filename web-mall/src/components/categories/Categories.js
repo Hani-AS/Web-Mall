@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ProductContext } from "../../context/ProductContext";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 export const Categories = () => {
+  const { fetchCategory } = useContext(ProductContext);
   const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => {
+  const categories = [
+    "ALL",
+    "ELECTRONICS",
+    "JEWELERY",
+    "MEN's CLOTHING",
+    "WOMEN's CLOTHING",
+  ];
+  const handleChange = (e, newValue) => {
     setValue(newValue);
+    fetchCategory(e.target.innerText);
   };
   return (
     <Box m={2}>
@@ -19,11 +29,9 @@ export const Categories = () => {
           textColor="secondary"
           centered
         >
-          <Tab label="ALL" />
-          <Tab label="ELECTRONICS" />
-          <Tab label="JEWELRY" />
-          <Tab label="MEN's CLOTHING" />
-          <Tab label="WOMEN's CLOTHING" />
+          {categories.map((category) => (
+            <Tab label={category} key={category} />
+          ))}
         </Tabs>
       </Paper>
     </Box>
