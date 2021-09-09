@@ -14,6 +14,8 @@ export const useStyles = makeStyles((theme) => {
       cursor: "pointer",
       backgroundSize: "contain",
       padding: "1rem",
+      transition: "transform 0.2s ease-in-out",
+      "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     },
 
     title: {
