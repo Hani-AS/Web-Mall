@@ -40,11 +40,7 @@ export const useStyles = makeStyles((theme) => {
       fontWeight: 700,
     },
     cardAction: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      padding: "0 2rem",
+      justifyContent: "center",
       height: 40,
     },
     cartBtn: {

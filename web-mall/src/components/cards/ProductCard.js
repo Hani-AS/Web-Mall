@@ -6,7 +6,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
@@ -25,14 +24,7 @@ export const ProductCard = () => {
           <CircularProgress color="secondary" />
         ) : (
           products.map((product) => {
-            const {
-              category,
-              description,
-              image,
-              price,
-              rating: { count, rate },
-              title,
-            } = product;
+            const { category, image, price, title } = product;
             return (
               <Grid item key={product.id}>
                 <Card className={classes.root}>
@@ -76,8 +68,7 @@ export const ProductCard = () => {
                     </CardContent>
                     <Divider />
                   </CardActionArea>
-                  <CardActions>
-                    {/* <Button size="small" color="secondary"></Button> */}
+                  <CardActions className={classes.cardAction}>
                     <Button size="small">
                       <Typography
                         className={classes.cartBtn}
