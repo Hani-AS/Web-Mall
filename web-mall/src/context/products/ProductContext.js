@@ -19,15 +19,12 @@ export const ProductProvider = ({ children }) => {
             ? "https://fakestoreapi.com/products?limit=12"
             : `https://fakestoreapi.com/products/category/${category.toLowerCase()}`
         );
-
-        console.log(category);
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
           setIsLoading(false);
-          console.log(data);
         } else {
-          throw new Error();
+          throw new Error(response.status, response.statusText);
         }
       } catch (error) {
         //             setAlert("There is no such city, please try again!");
@@ -44,7 +41,9 @@ export const ProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products, fetchCategory, isLoading }}>
+    <ProductContext.Provider
+      value={{ products, fetchCategory, isLoading, setIsLoading }}
+    >
       {children}
     </ProductContext.Provider>
   );

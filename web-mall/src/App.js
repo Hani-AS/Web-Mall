@@ -1,26 +1,40 @@
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/navbar/NavBar";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core";
-import { ProductProvider } from "./context/ProductContext";
+import { ProductProvider } from "./context/products/ProductContext";
+import { CartProvider } from "./context/cart/CartContext";
 import { theme } from "./theme/style";
-import { Categories } from "./components/categories/Categories";
-import { ProductCard } from "./components/cards/ProductCard";
+import { Home } from "./pages/Home";
+import { Item } from "./components/item/Item";
 
 function App() {
   return (
-    <ProductProvider>
-      <ThemeProvider theme={theme}>
-        <>
-          <CssBaseline />
-          <NavBar />
-          <Container>
-            <Categories />
-            <ProductCard />
-          </Container>
-        </>
-      </ThemeProvider>
-    </ProductProvider>
+    <CartProvider>
+      <ProductProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <>
+              <CssBaseline />
+              <NavBar />
+              <Container>
+                <Switch>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route path="/:id">
+                    <Item />
+                  </Route>
+                  <Route path="/cart">{/* <Cart /> */}</Route>
+                </Switch>
+              </Container>
+            </>
+          </Router>
+        </ThemeProvider>
+      </ProductProvider>
+    </CartProvider>
   );
 }
 

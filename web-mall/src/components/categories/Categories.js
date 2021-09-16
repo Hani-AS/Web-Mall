@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ProductContext } from "../../context/ProductContext";
+import { ProductContext } from "../../context/products/ProductContext";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Tabs from "@material-ui/core/Tabs";
