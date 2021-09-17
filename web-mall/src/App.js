@@ -9,6 +9,7 @@ import { CartProvider } from "./context/cart/CartContext";
 import { theme } from "./theme/style";
 import { Home } from "./pages/Home";
 import { Item } from "./components/item/Item";
+import { Cart } from "./components/cart/Cart";
 
 function App() {
   return (
@@ -21,13 +22,15 @@ function App() {
               <NavBar />
               <Container>
                 <Switch>
+                  <Route exact path="/cart">
+                    <Cart />
+                  </Route>
+                  <Route exact path="/:id">
+                    <Item />
+                  </Route>
                   <Route exact path="/">
                     <Home />
                   </Route>
-                  <Route path="/:id">
-                    <Item />
-                  </Route>
-                  <Route path="/cart">{/* <Cart /> */}</Route>
                 </Switch>
               </Container>
             </>

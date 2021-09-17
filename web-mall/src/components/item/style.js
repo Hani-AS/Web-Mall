@@ -6,13 +6,13 @@ export const useStyles = makeStyles((theme) => {
       "& .MuiCardMedia-img": {
         objectFit: "contain",
       },
-      maxHeight: 600,
+      maxHeight: 800,
       "&.MuiPaper-elevation1": {
         boxShadow: "none",
       },
     },
     media: {
-      height: 400,
+      height: 500,
       margin: "1rem 0",
     },
     gridContainer: {
@@ -68,6 +68,7 @@ export const useStyles = makeStyles((theme) => {
     secondaryContainer: {
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
     },
     description: {
       padding: "0px 16px",

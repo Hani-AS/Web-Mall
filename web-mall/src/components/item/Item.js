@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Rating } from "@material-ui/lab";
 import { useStyles } from "./style";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -17,18 +17,19 @@ import {
 import { CartState } from "../../context/cart/CartContext";
 
 export const Item = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const {
     state: { cart },
     dispatch,
   } = CartState();
-
-  console.log(cart);
-
   const classes = useStyles();
   const [item, setItem] = useState({});
   const [status, setStatus] = useState(null);
-  const { category, description, image, price, title, rating } = item;
+  const { description, image, price, title, rating } = item;
+  const history = useHistory();
+  const handleClick = () => {
+    history.push("/");
+  };
   useEffect(() => {
     (async () => {
       try {
@@ -45,6 +46,7 @@ export const Item = () => {
       }
     })();
   }, [id]);
+  const InCart = cart.some((product) => product.id === item.id);
 
   return (
     <>
@@ -64,7 +66,7 @@ export const Item = () => {
             item
             xs={12}
             sm={10}
-            lg={6}
+            lg={4}
             className={classes.secondaryContainer}
           >
             <Card className={classes.descriptionCard}>
@@ -97,6 +99,8 @@ export const Item = () => {
               <CardActions>
                 <Button
                   className={classes.cardBtn}
+                  variant="contained"
+                  disabled={InCart && true}
                   onClick={() => {
                     dispatch({ type: "ADD_TO_CART", payload: item });
                   }}
@@ -106,13 +110,13 @@ export const Item = () => {
                     variant="button"
                     component="p"
                   >
-                    ADD TO CART
+                    {InCart ? "IN CART" : "ADD TO CART"}
                   </Typography>
                   <AddShoppingCartIcon />
                 </Button>
               </CardActions>
               <CardActions className={classes.cardActionSecondary}>
-                <Button className={classes.BtnSecondary}>
+                <Button className={classes.BtnSecondary} variant="contained">
                   <Typography
                     className={classes.cartText}
                     variant="button"
@@ -122,7 +126,11 @@ export const Item = () => {
                   </Typography>
                   <FavoriteBorderIcon />
                 </Button>
-                <Button className={classes.BtnSecondary}>
+                <Button
+                  className={classes.BtnSecondary}
+                  variant="contained"
+                  onClick={handleClick}
+                >
                   <Typography
                     className={classes.cartText}
                     variant="button"
