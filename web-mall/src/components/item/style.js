@@ -54,9 +54,21 @@ export const useStyles = makeStyles((theme) => {
       width: "100%",
       backgroundColor: theme.palette.primary.main,
     },
+    showCartBtn: {
+      height: 40,
+      width: "100%",
+      backgroundColor: "rgb(56, 142, 60)",
+    },
     cartText: {
       paddingRight: "0.2rem",
       color: theme.palette.secondary.main,
+    },
+    showCartText: {
+      paddingRight: "0.2rem",
+      color: theme.palette.secondary.contrastText,
+    },
+    showCartIcon: {
+      color: "white !important",
     },
     BtnSecondary: {
       backgroundColor: "#e5e3de",

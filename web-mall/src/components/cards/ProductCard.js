@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../context/products/ProductContext";
 import { Link } from "react-router-dom";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import ShopIcon from "@material-ui/icons/Shop";
-import Divider from "@material-ui/core/Divider";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { Container, Grid } from "@material-ui/core";
+import ShopIcon from "@mui/icons-material/Shop";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {
+  Container,
+  Grid,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Box,
+  Button,
+  Typography,
+  Divider,
+  CircularProgress,
+} from "@material-ui/core";
 import { useStyles } from "./styles";
 
 export const ProductCard = () => {

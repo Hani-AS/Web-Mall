@@ -7,6 +7,15 @@ export const cartReducer = (state, action) => {
         ...state,
         cart: state.cart.filter((product) => product.id !== action.payload.id),
       };
+    case "CHANGE_CART_QTY":
+      return {
+        ...state,
+        cart: state.cart.filter((product) =>
+          product.id === action.payload.id
+            ? (product.qty = action.payload.qty)
+            : product.qty
+        ),
+      };
     default:
       return state;
   }

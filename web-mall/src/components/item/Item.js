@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { Rating } from "@material-ui/lab";
+import { useParams, useHistory, Link } from "react-router-dom";
+import { Rating } from "@mui/material";
 import { useStyles } from "./style";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { CartState } from "../../context/cart/CartContext";
+import { AddToCartBtn } from "./AddToCartBtn";
+import { ShowCartBtn } from "./ShowCartBtn";
+import { ContinueShoppingBtn } from "./ContinueShoppingBtn";
+import { AddToFavoriteBtn } from "./AddToFavoriteBtn";
 import {
   Grid,
   Card,
@@ -12,9 +15,7 @@ import {
   Typography,
   Box,
   CardActions,
-  Button,
 } from "@material-ui/core";
-import { CartState } from "../../context/cart/CartContext";
 
 export const Item = () => {
   const { id } = useParams();
@@ -97,48 +98,15 @@ export const Item = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button
-                  className={classes.cardBtn}
-                  variant="contained"
-                  disabled={InCart && true}
-                  onClick={() => {
-                    dispatch({ type: "ADD_TO_CART", payload: item });
-                  }}
-                >
-                  <Typography
-                    className={classes.cartText}
-                    variant="button"
-                    component="p"
-                  >
-                    {InCart ? "IN CART" : "ADD TO CART"}
-                  </Typography>
-                  <AddShoppingCartIcon />
-                </Button>
+                {!InCart ? (
+                  <AddToCartBtn {...{ dispatch, item, classes }} />
+                ) : (
+                  <ShowCartBtn {...{ Link, classes }} />
+                )}
               </CardActions>
               <CardActions className={classes.cardActionSecondary}>
-                <Button className={classes.BtnSecondary} variant="contained">
-                  <Typography
-                    className={classes.cartText}
-                    variant="button"
-                    component="p"
-                  >
-                    ADD TO FAVORITE
-                  </Typography>
-                  <FavoriteBorderIcon />
-                </Button>
-                <Button
-                  className={classes.BtnSecondary}
-                  variant="contained"
-                  onClick={handleClick}
-                >
-                  <Typography
-                    className={classes.cartText}
-                    variant="button"
-                    component="p"
-                  >
-                    CONTINUE SHOPPING
-                  </Typography>
-                </Button>
+                <AddToFavoriteBtn {...{ classes }} />
+                <ContinueShoppingBtn {...{ classes, handleClick }} />
               </CardActions>
             </Card>
           </Grid>
