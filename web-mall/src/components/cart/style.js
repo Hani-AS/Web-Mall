@@ -29,10 +29,25 @@ export const useStyles = makeStyles((theme) => {
     },
     tableContainer: {
       marginTop: "1rem",
+      maxWidth: 600,
     },
     emptyCart: {
       marginTop: "1rem",
       justifyContent: "center",
+    },
+    descCell: {
+      textAlign: "left",
+    },
+    totalCell: {
+      textAlign: "right",
+    },
+    mainContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      height: "80vh",
+    },
+    priceCell: {
+      textAlign: "center",
     },
   };
 });

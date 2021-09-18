@@ -10,6 +10,7 @@ import { theme } from "./theme/style";
 import { Home } from "./pages/Home";
 import { Item } from "./components/item/Item";
 import { Cart } from "./components/cart/Cart";
+import { ScrollToTop } from "./utils/ScrollToTop";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <ProductProvider>
         <ThemeProvider theme={theme}>
           <Router>
+            <ScrollToTop />
             <>
               <CssBaseline />
               <NavBar />

@@ -2,9 +2,6 @@ import React from "react";
 import { CartState } from "../../context/cart/CartContext";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./style";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Table,
   TableBody,
@@ -13,12 +10,13 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Box,
-  Avatar,
-  Button,
   Grid,
   Typography,
 } from "@material-ui/core";
+import { BackToItemBtn } from "./BackToItemBtn";
+import { RemoveFromCartBtn } from "./RemoveFromCartBtn";
+import { RemoveQtyBtn } from "./RemoveQtyBtn";
+import { AddQtyBtn } from "./AddQtyBtn";
 
 export const Cart = () => {
   const {
@@ -26,7 +24,6 @@ export const Cart = () => {
     dispatch,
   } = CartState();
   const classes = useStyles();
-
   const ccyFormat = (num) => {
     return `${num.toFixed(2)}`;
   };
@@ -58,116 +55,70 @@ export const Cart = () => {
           </Typography>
         </Grid>
       ) : (
-        <TableContainer component={Paper} className={classes.tableContainer}>
-          <Table aria-label="spanning table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center" colSpan={3}>
-                  Details
-                </TableCell>
-                <TableCell align="right">Price</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Desc</TableCell>
-                <TableCell></TableCell>
-                <TableCell align="center">Qty.</TableCell>
-                <TableCell align="right">Unit</TableCell>
-                <TableCell align="right">Sum</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {cart.map((row) => (
-                <TableRow key={row.title}>
-                  <TableCell>
-                    <Box>
-                      <Button
-                        onClick={() => handleClick(row.id)}
-                        className={classes.titleBtn}
-                      >
-                        <Avatar
-                          alt={row.title}
-                          src={row.image}
-                          className={classes.avatar}
-                        />
-                        <Typography
-                          variant="subtitle1"
-                          component="div"
-                          className={classes.titleText}
-                        >
-                          {row.title}
-                        </Typography>
-                      </Button>
-                    </Box>
+        <Grid container className={classes.mainContainer}>
+          <TableContainer component={Paper} className={classes.tableContainer}>
+            <Table aria-label="spanning table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center" colSpan={3}>
+                    Details
                   </TableCell>
-                  <TableCell>
-                    <Button
-                      onClick={() =>
-                        dispatch({ type: "REMOVE_FROM_CART", payload: row })
-                      }
-                    >
-                      <DeleteIcon fontSize="small" />
-                    </Button>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Grid container className={classes.qtyContainer}>
-                      <Button
-                        className={classes.qtyBtn}
-                        onClick={() =>
-                          row.qty > 1 &&
-                          dispatch({
-                            type: "CHANGE_CART_QTY",
-                            payload: { id: row.id, qty: row.qty - 1 },
-                          })
-                        }
-                      >
-                        <RemoveIcon fontSize="inherit" />
-                      </Button>
-                      <Typography
-                        className={classes.qtyText}
-                        variant="button"
-                        component="p"
-                      >
-                        {row.qty}
-                      </Typography>
-                      <Button
-                        className={classes.qtyBtn}
-                        onClick={() =>
-                          dispatch({
-                            type: "CHANGE_CART_QTY",
-                            payload: { id: row.id, qty: row.qty + 1 },
-                          })
-                        }
-                      >
-                        <AddIcon fontSize="inherit" />
-                      </Button>
-                    </Grid>
-                  </TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
-                  <TableCell align="right">
-                    {ccyFormat(row.qty * row.price)}
+                  <TableCell
+                    align="right"
+                    colSpan={2}
+                    className={classes.priceCell}
+                  >
+                    Price
                   </TableCell>
                 </TableRow>
-              ))}
-
-              <TableRow>
-                <TableCell rowSpan={3} />
-                <TableCell colSpan={2}>Subtotal</TableCell>
-                {/* <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell> */}
-              </TableRow>
-              <TableRow>
-                <TableCell>Tax</TableCell>
-                {/* <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-              0
-            )} %`}</TableCell> */}
-                {/* <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell> */}
-              </TableRow>
-              <TableRow>
-                <TableCell colSpan={2}>Total</TableCell>
-                <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+                <TableRow>
+                  <TableCell align="left" className={classes.descCell}>
+                    Desc
+                  </TableCell>
+                  <TableCell></TableCell>
+                  <TableCell align="center">Qty.</TableCell>
+                  <TableCell align="right">Unit</TableCell>
+                  <TableCell align="right">Sum</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {cart.map((row) => (
+                  <TableRow key={row.title}>
+                    <TableCell>
+                      <BackToItemBtn {...{ row, handleClick, classes }} />
+                    </TableCell>
+                    <TableCell>
+                      <RemoveFromCartBtn {...{ row, dispatch }} />
+                    </TableCell>
+                    <TableCell align="right">
+                      <Grid container className={classes.qtyContainer}>
+                        <RemoveQtyBtn {...{ classes, row, dispatch }} />
+                        <Typography
+                          className={classes.qtyText}
+                          variant="button"
+                          component="p"
+                        >
+                          {row.qty}
+                        </Typography>
+                        <AddQtyBtn {...{ classes, dispatch, row }} />
+                      </Grid>
+                    </TableCell>
+                    <TableCell align="right">{row.price}</TableCell>
+                    <TableCell align="right">
+                      {ccyFormat(row.qty * row.price)}
+                    </TableCell>
+                  </TableRow>
+                ))}
+                <TableRow>
+                  <TableCell colSpan={4} className={classes.totalCell}>
+                    Total
+                  </TableCell>
+                  <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
       )}
     </>
   );
