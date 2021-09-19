@@ -6,7 +6,6 @@ export const Checkout = () => {
     state: { cart },
     dispatch,
   } = CartState();
-
   const total = cart.reduce((total, item) => total + item.price * item.qty, 0);
 
   return <div></div>;
