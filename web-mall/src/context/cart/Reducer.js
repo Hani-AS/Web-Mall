@@ -16,6 +16,10 @@ export const cartReducer = (state, action) => {
             : product.qty
         ),
       };
+    case "CLEAR_CART":
+      return {
+        cart: (state.cart = []),
+      };
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import { CartState } from "../../context/cart/CartContext";
 import { useHistory } from "react-router-dom";
+import { StripeCheckout } from "../checkout/StripeCheckout";
 import { useStyles } from "./style";
 import { BackToItemBtn } from "./BackToItemBtn";
 import { RemoveFromCartBtn } from "./RemoveFromCartBtn";
@@ -98,6 +99,11 @@ export const Cart = () => {
                     Total
                   </TableCell>
                   <TableCell align="right">{invoiceTotal.toFixed(2)}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell colSpan={5} align="right">
+                    <StripeCheckout />
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>

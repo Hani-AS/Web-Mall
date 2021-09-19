@@ -13,6 +13,7 @@ import { Cart } from "./components/cart/Cart";
 import { ScrollToTop } from "./utils/ScrollToTop";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { Success } from "./components/checkout/Success";
 
 const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
@@ -29,6 +30,9 @@ function App() {
                 <NavBar />
                 <Container>
                   <Switch>
+                    <Route exact path="/success">
+                      <Success />
+                    </Route>
                     <Route exact path="/cart">
                       <Cart />
                     </Route>
