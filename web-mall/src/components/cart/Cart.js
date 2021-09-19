@@ -2,6 +2,10 @@ import React from "react";
 import { CartState } from "../../context/cart/CartContext";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./style";
+import { BackToItemBtn } from "./BackToItemBtn";
+import { RemoveFromCartBtn } from "./RemoveFromCartBtn";
+import { RemoveQtyBtn } from "./RemoveQtyBtn";
+import { AddQtyBtn } from "./AddQtyBtn";
 import {
   Table,
   TableBody,
@@ -13,39 +17,21 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { BackToItemBtn } from "./BackToItemBtn";
-import { RemoveFromCartBtn } from "./RemoveFromCartBtn";
-import { RemoveQtyBtn } from "./RemoveQtyBtn";
-import { AddQtyBtn } from "./AddQtyBtn";
 
 export const Cart = () => {
   const {
     state: { cart },
     dispatch,
   } = CartState();
+
+  const total = cart.reduce((total, item) => total + item.price * item.qty, 0);
+  const invoiceTotal = total;
   const classes = useStyles();
-  const ccyFormat = (num) => {
-    return `${num.toFixed(2)}`;
-  };
-  const priceRow = (qty, unit) => {
-    return qty * unit;
-  };
-  const createRow = (qty, unit) => {
-    const price = priceRow(qty, unit);
-    return { qty, unit, price };
-  };
-  const subtotal = (items) => {
-    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-  };
-  const sum = cart.map((item) => {
-    return createRow(item.qty, item.price);
-  });
   const history = useHistory();
   const handleClick = (id) => {
     history.push(`/${id}`);
   };
 
-  const invoiceTotal = subtotal(sum);
   return (
     <>
       {cart.length === 0 ? (
@@ -104,16 +90,14 @@ export const Cart = () => {
                       </Grid>
                     </TableCell>
                     <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">
-                      {ccyFormat(row.qty * row.price)}
-                    </TableCell>
+                    <TableCell align="right">{row.qty * row.price}</TableCell>
                   </TableRow>
                 ))}
                 <TableRow>
                   <TableCell colSpan={4} className={classes.totalCell}>
                     Total
                   </TableCell>
-                  <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+                  <TableCell align="right">{invoiceTotal.toFixed(2)}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

@@ -11,35 +11,41 @@ import { Home } from "./pages/Home";
 import { Item } from "./components/item/Item";
 import { Cart } from "./components/cart/Cart";
 import { ScrollToTop } from "./utils/ScrollToTop";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
 function App() {
   return (
-    <CartProvider>
-      <ProductProvider>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <ScrollToTop />
-            <>
-              <CssBaseline />
-              <NavBar />
-              <Container>
-                <Switch>
-                  <Route exact path="/cart">
-                    <Cart />
-                  </Route>
-                  <Route exact path="/:id">
-                    <Item />
-                  </Route>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                </Switch>
-              </Container>
-            </>
-          </Router>
-        </ThemeProvider>
-      </ProductProvider>
-    </CartProvider>
+    <Elements stripe={stripePromise}>
+      <CartProvider>
+        <ProductProvider>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <ScrollToTop />
+              <>
+                <CssBaseline />
+                <NavBar />
+                <Container>
+                  <Switch>
+                    <Route exact path="/cart">
+                      <Cart />
+                    </Route>
+                    <Route exact path="/:id">
+                      <Item />
+                    </Route>
+                    <Route exact path="/">
+                      <Home />
+                    </Route>
+                  </Switch>
+                </Container>
+              </>
+            </Router>
+          </ThemeProvider>
+        </ProductProvider>
+      </CartProvider>
+    </Elements>
   );
 }
 
