@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { useStyles } from "./style";
 import { CartState } from "../../context/cart/CartContext";
@@ -96,13 +96,13 @@ export const Item = () => {
               </CardContent>
               <CardActions>
                 {!InCart ? (
-                  <AddToCartBtn {...{ dispatch, item, classes }} />
+                  <AddToCartBtn {...{ dispatch, item }} />
                 ) : (
-                  <ShowCartBtn {...{ Link, classes }} />
+                  <ShowCartBtn {...{ Link }} />
                 )}
               </CardActions>
               <CardActions className={classes.cardActionSecondary}>
-                <AddToFavoriteBtn {...{ classes }} />
+                <AddToFavoriteBtn />
                 <ContinueShoppingBtn />
               </CardActions>
             </Card>

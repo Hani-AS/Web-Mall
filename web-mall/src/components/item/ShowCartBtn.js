@@ -1,8 +1,10 @@
 import { Button, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React from "react";
+import { useStyles } from "./style";
 
-export const ShowCartBtn = ({ classes, Link }) => {
+export const ShowCartBtn = ({ Link }) => {
+  const classes = useStyles();
   return (
     <Button
       className={classes.showCartBtn}

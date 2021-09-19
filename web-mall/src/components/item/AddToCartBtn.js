@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Typography } from "@material-ui/core";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useStyles } from "./style";
 
-export const AddToCartBtn = ({ classes, item, dispatch }) => {
+export const AddToCartBtn = ({ item, dispatch }) => {
+  const classes = useStyles();
   return (
     <Button
       className={classes.cardBtn}
