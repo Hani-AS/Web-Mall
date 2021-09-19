@@ -12,11 +12,6 @@ export const Success = () => {
     });
   }, []);
 
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/");
-  };
-
   return (
     <div>
       <h1>Thank you for your order</h1>
@@ -24,7 +19,7 @@ export const Success = () => {
         We are currently processing your order and will send you a confirmation
         email shortly.
       </p>
-      {/* <ContinueShoppingBtn {...{ handleClick }} /> */}
+      <ContinueShoppingBtn />
     </div>
   );
 };

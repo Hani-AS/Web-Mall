@@ -27,10 +27,7 @@ export const Item = () => {
   const [item, setItem] = useState({});
   const [status, setStatus] = useState(null);
   const { description, image, price, title, rating } = item;
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/");
-  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -106,7 +103,7 @@ export const Item = () => {
               </CardActions>
               <CardActions className={classes.cardActionSecondary}>
                 <AddToFavoriteBtn {...{ classes }} />
-                <ContinueShoppingBtn {...{ classes, handleClick }} />
+                <ContinueShoppingBtn />
               </CardActions>
             </Card>
           </Grid>
