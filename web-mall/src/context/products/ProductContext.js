@@ -9,6 +9,7 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState("");
 
   const fetchCategory = (category) => {
     (async () => {
@@ -27,11 +28,11 @@ export const ProductProvider = ({ children }) => {
           throw new Error(response.status, response.statusText);
         }
       } catch (error) {
-        //             setAlert("There is no such city, please try again!");
-        //   setTimeout(() => {
-        //     setAlert("");
-        //   }, 3000);
-        // }
+        setAlert(error.message);
+        setIsLoading(false);
+        setTimeout(() => {
+          setAlert("");
+        }, 6000);
       }
     })();
   };
@@ -42,7 +43,7 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, fetchCategory, isLoading, setIsLoading }}
+      value={{ products, fetchCategory, isLoading, setIsLoading, alert }}
     >
       {children}
     </ProductContext.Provider>
