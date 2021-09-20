@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -21,18 +23,21 @@ export default function ButtonAppBar() {
   const handleClick = () => {
     history.push("/");
   };
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          <Button className={classes.BtnSecondary} onClick={handleClick}>
-            <Typography variant="h6" className={classes.title}>
-              <StoreIcon />
-              Web Mall
-            </Typography>
-          </Button>
+        <Toolbar className={classes.toolBar}>
+          {matches && (
+            <Button className={classes.BtnSecondary} onClick={handleClick}>
+              <Typography variant="h6" className={classes.title}>
+                <StoreIcon />
+                Web Mall
+              </Typography>
+            </Button>
+          )}
           <Search />
-          <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
               component={Link}

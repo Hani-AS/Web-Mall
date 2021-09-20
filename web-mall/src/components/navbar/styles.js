@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: 200,
+      maxWidth: 300,
     },
   },
   title: {
@@ -20,5 +20,8 @@ export const useStyles = makeStyles((theme) => ({
   textField: {
     backgroundColor: "#FEEAE6",
     borderRadius: 4,
+  },
+  toolBar: {
+    textAlign: "center",
   },
 }));

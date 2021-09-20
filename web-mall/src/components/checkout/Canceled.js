@@ -8,7 +8,7 @@ export const Canceled = () => {
   return (
     <Grid container className={classes.container}>
       <Grid item className={classes.canceledItem}>
-        <h1>Payment failed</h1>
+        <h1 className={classes.h1}>Payment failed</h1>
       </Grid>
       <Grid item className={classes.item}>
         <p>Payment was not successful</p>
