@@ -14,14 +14,17 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexWrap: "wrap",
   },
-  shoppingCartIcon: {
-    backgroundColor: "red",
-  },
   textField: {
     backgroundColor: "#FEEAE6",
     borderRadius: 4,
   },
   toolBar: {
-    textAlign: "center",
+    justifyContent: "space-between",
+  },
+  cartIcon: {
+    marginLeft: "5px",
+    "& .MuiBadge-colorError": {
+      backgroundColor: "#d32f2f",
+    },
   },
 }));
