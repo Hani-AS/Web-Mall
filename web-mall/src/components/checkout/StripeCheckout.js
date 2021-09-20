@@ -4,7 +4,7 @@ import { CartState } from "../../context/cart/CartContext";
 import { fetchFromApi } from "../../utils/helpers";
 import { Button } from "@mui/material";
 
-export const StripeCheckout = () => {
+export const StripeCheckout = ({ classes }) => {
   const {
     state: { cart },
   } = CartState();
@@ -38,7 +38,11 @@ export const StripeCheckout = () => {
   };
 
   return (
-    <Button variant="contained" onClick={handleCheckOut}>
+    <Button
+      variant="contained"
+      onClick={handleCheckOut}
+      className={classes.checkoutBtn}
+    >
       Proceed to checkout
     </Button>
   );

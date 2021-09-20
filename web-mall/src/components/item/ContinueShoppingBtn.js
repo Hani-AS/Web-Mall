@@ -13,10 +13,11 @@ export const ContinueShoppingBtn = () => {
   return (
     <Button
       className={classes.BtnSecondary}
-      variant="contained"
+      variant="outlined"
+      component="button"
       onClick={handleClick}
     >
-      <Typography className={classes.cartText} variant="button" component="p">
+      <Typography className={classes.cartText} variant="button" component="div">
         CONTINUE SHOPPING
       </Typography>
     </Button>

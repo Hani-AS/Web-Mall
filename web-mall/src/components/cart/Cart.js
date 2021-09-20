@@ -1,23 +1,11 @@
 import React from "react";
 import { CartState } from "../../context/cart/CartContext";
 import { useHistory } from "react-router-dom";
-import { StripeCheckout } from "../checkout/StripeCheckout";
 import { useStyles } from "./style";
-import { BackToItemBtn } from "./BackToItemBtn";
-import { RemoveFromCartBtn } from "./RemoveFromCartBtn";
-import { RemoveQtyBtn } from "./RemoveQtyBtn";
-import { AddQtyBtn } from "./AddQtyBtn";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+import { CartItem } from "./CartItem";
+import { CartTotal } from "./CartTotal";
+import { List } from "@mui/material";
 
 export const Cart = () => {
   const {
@@ -43,71 +31,19 @@ export const Cart = () => {
         </Grid>
       ) : (
         <Grid container className={classes.mainContainer}>
-          <TableContainer component={Paper} className={classes.tableContainer}>
-            <Table aria-label="spanning table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center" colSpan={3}>
-                    Details
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    colSpan={2}
-                    className={classes.priceCell}
-                  >
-                    Price
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left" className={classes.descCell}>
-                    Desc
-                  </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell align="center">Qty.</TableCell>
-                  <TableCell align="right">Unit</TableCell>
-                  <TableCell align="right">Sum</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {cart.map((row) => (
-                  <TableRow key={row.title}>
-                    <TableCell>
-                      <BackToItemBtn {...{ row, handleClick, classes }} />
-                    </TableCell>
-                    <TableCell>
-                      <RemoveFromCartBtn {...{ row, dispatch }} />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Grid container className={classes.qtyContainer}>
-                        <RemoveQtyBtn {...{ classes, row, dispatch }} />
-                        <Typography
-                          className={classes.qtyText}
-                          variant="button"
-                          component="p"
-                        >
-                          {row.qty}
-                        </Typography>
-                        <AddQtyBtn {...{ classes, dispatch, row }} />
-                      </Grid>
-                    </TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">{row.qty * row.price}</TableCell>
-                  </TableRow>
-                ))}
-                <TableRow>
-                  <TableCell colSpan={4} className={classes.totalCell}>
-                    Total
-                  </TableCell>
-                  <TableCell align="right">{invoiceTotal.toFixed(2)}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell colSpan={5} align="right">
-                    <StripeCheckout />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <Grid item className={classes.itemContainer}>
+            <List
+              sx={{ width: "100%", maxWidth: 460, bgcolor: "background.paper" }}
+            >
+              {cart.map((item) => (
+                <CartItem
+                  {...{ handleClick, history, item, classes, dispatch }}
+                  key={item.id}
+                />
+              ))}
+              <CartTotal {...{ invoiceTotal, classes }} />
+            </List>
+          </Grid>
         </Grid>
       )}
     </>

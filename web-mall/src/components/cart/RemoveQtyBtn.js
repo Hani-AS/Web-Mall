@@ -2,15 +2,15 @@ import { Button } from "@material-ui/core";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React from "react";
 
-export const RemoveQtyBtn = ({ classes, row, dispatch }) => {
+export const RemoveQtyBtn = ({ classes, item, dispatch }) => {
   return (
     <Button
       className={classes.qtyBtn}
       onClick={() =>
-        row.qty > 1 &&
+        item.qty > 1 &&
         dispatch({
           type: "CHANGE_CART_QTY",
-          payload: { id: row.id, qty: row.qty - 1 },
+          payload: { id: item.id, qty: item.qty - 1 },
         })
       }
     >

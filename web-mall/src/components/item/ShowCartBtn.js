@@ -15,7 +15,7 @@ export const ShowCartBtn = ({ Link }) => {
       <Typography
         className={classes.showCartText}
         variant="button"
-        component="p"
+        component="div"
       >
         SHOW CART
       </Typography>

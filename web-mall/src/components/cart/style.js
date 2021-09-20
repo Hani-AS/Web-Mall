@@ -2,8 +2,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => {
   return {
+    cardContainer: {
+      width: "100%",
+      maxHeight: 200,
+      justifyContent: "center",
+    },
     avatar: {
-      "& .MuiAvatar-img": {
+      "& .css-1pqm26d-MuiAvatar-img": {
         objectFit: "contain",
       },
     },
@@ -13,19 +18,20 @@ export const useStyles = makeStyles((theme) => {
     qtyContainer: {
       flexWrap: "nowrap !important",
       flexDirection: "row !important",
-      justifyContent: "center",
+      justifyContent: "space-around",
+      alignItems: "center",
     },
     titleText: {
       padding: 0,
-      marginLeft: "10px",
       display: "box",
       lineClamp: 2,
       boxOrient: "vertical",
       overflow: "hidden",
     },
-    titleBtn: {
-      padding: 0,
-      textAlign: "left",
+    itemBtn: {
+      color: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
+      margin: "0",
     },
     tableContainer: {
       marginTop: "1rem",
@@ -35,19 +41,33 @@ export const useStyles = makeStyles((theme) => {
       marginTop: "1rem",
       justifyContent: "center",
     },
-    descCell: {
-      textAlign: "left",
-    },
-    totalCell: {
-      textAlign: "right",
-    },
     mainContainer: {
       justifyContent: "center",
-      alignItems: "center",
-      height: "80vh",
+      width: "100%",
+      height: "80%",
+      marginTop: "1rem",
     },
-    priceCell: {
+    checkoutContainer: {
+      width: "100%",
+      height: "100%",
+    },
+    itemContainer: {
+      maxWidth: 500,
+    },
+    innerQtyContainer: {
+      alignItems: "center",
+      flexWrap: "nowrap !important",
+    },
+    goBackBtnBox: {
       textAlign: "center",
+    },
+    cartTotalContainer: {
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+    checkoutBtn: {
+      color: `${theme.palette.primary.contrastText} !important`,
+      backgroundColor: `${theme.palette.primary.main} !important`,
     },
   };
 });

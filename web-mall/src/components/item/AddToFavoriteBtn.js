@@ -6,8 +6,8 @@ import { useStyles } from "./style";
 export const AddToFavoriteBtn = () => {
   const classes = useStyles();
   return (
-    <Button className={classes.BtnSecondary} variant="contained">
-      <Typography className={classes.cartText} variant="button" component="p">
+    <Button className={classes.BtnSecondary} variant="outlined">
+      <Typography className={classes.cartText} variant="button" component="div">
         ADD TO FAVORITE
       </Typography>
       <FavoriteBorderIcon />

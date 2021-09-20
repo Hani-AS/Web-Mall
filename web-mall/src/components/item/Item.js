@@ -90,7 +90,7 @@ export const Item = () => {
                 </Typography>
               </CardContent>
               <CardContent className={classes.description}>
-                <Typography variant="body2" color="secondary" component="p">
+                <Typography variant="body2" color="secondary" component="div">
                   {description}
                 </Typography>
               </CardContent>

@@ -13,7 +13,7 @@ export const AddToCartBtn = ({ item, dispatch }) => {
         dispatch({ type: "ADD_TO_CART", payload: item });
       }}
     >
-      <Typography className={classes.cartText} variant="button" component="p">
+      <Typography className={classes.cartText} variant="button" component="div">
         ADD TO CART
       </Typography>
       <AddShoppingCartIcon />
