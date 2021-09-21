@@ -33,7 +33,7 @@ export const Cart = () => {
         <Grid container className={classes.mainContainer}>
           <Grid item className={classes.itemContainer}>
             <List
-              sx={{ width: "100%", maxWidth: 460, bgcolor: "background.paper" }}
+              sx={{ width: "100%", maxWidth: 500, bgcolor: "background.paper" }}
             >
               {cart.map((item) => (
                 <CartItem

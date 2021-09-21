@@ -52,7 +52,7 @@ export const useStyles = makeStyles((theme) => {
       height: "100%",
     },
     itemContainer: {
-      maxWidth: 500,
+      width: 500,
     },
     innerQtyContainer: {
       alignItems: "center",

@@ -15,8 +15,11 @@ export const useStyles = makeStyles((theme) => {
       margin: "10px",
       "& .css-1pqm26d-MuiAvatar-img": {
         objectFit: "contain",
+        transition: "transform 0.2s ease-in-out",
+        "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
       },
     },
+
     favDeleteButton: {
       color: `${theme.palette.secondary.main} !important`,
     },

@@ -64,15 +64,16 @@ export const useStyles = makeStyles((theme) => {
       color: "inherit",
       textDecoration: "inherit",
     },
-    FavoriteIcon: {
+    FavoriteIconTrue: {
       position: "absolute",
       right: "8px",
       top: "5px",
-      color: "#e9d5d5",
-      "&:hover": {
-        color: "red",
-        cursor: "pointer",
-      },
+      color: "red",
+    },
+    FavoriteIconFalse: {
+      position: "absolute",
+      right: "8px",
+      top: "5px",
     },
   };
 });

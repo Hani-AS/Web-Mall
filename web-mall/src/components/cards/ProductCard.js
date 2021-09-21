@@ -3,6 +3,7 @@ import { ProductContext } from "../../context/products/ProductContext";
 import { Link } from "react-router-dom";
 import ShopIcon from "@mui/icons-material/Shop";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Container,
   Grid,
@@ -20,6 +21,10 @@ import { useStyles } from "./styles";
 
 export const ProductCard = () => {
   const { products, isLoading } = useContext(ProductContext);
+  const {
+    favoriteListState: { favoriteList },
+  } = useContext(ProductContext);
+
   const classes = useStyles();
   return (
     <Container>
@@ -28,6 +33,7 @@ export const ProductCard = () => {
           <CircularProgress color="secondary" />
         ) : (
           products.map((product) => {
+            const inList = favoriteList.some((item) => item.id === product.id);
             const { category, image, price, title, id } = product;
             return (
               <Grid item key={product.id}>
@@ -39,7 +45,11 @@ export const ProductCard = () => {
                     image={image}
                     title={title}
                   />
-                  <FavoriteIcon className={classes.FavoriteIcon} />
+                  {inList ? (
+                    <FavoriteIcon className={classes.FavoriteIconTrue} />
+                  ) : (
+                    <FavoriteBorderIcon className={classes.FavoriteIconFalse} />
+                  )}
                   <CardContent className={classes.cardContent}>
                     <Box className={classes.title}>
                       <Typography
