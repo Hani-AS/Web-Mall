@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ProductContext } from "../../../context/products/ProductContext";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
@@ -15,6 +16,11 @@ import {
 } from "@mui/material";
 
 export const FavoriteDrawer = () => {
+  const {
+    favoriteListDispatch,
+    favoriteListState,
+    favoriteListState: { favoriteList },
+  } = useContext(ProductContext);
   const [drawer, setDrawer] = useState(false);
   const toggleDrawer = (open) => () => {
     setDrawer(open);
@@ -43,7 +49,7 @@ export const FavoriteDrawer = () => {
         aria-label="show 17 new notifications"
         color="inherit"
       >
-        <Badge badgeContent={5} color="error">
+        <Badge badgeContent={favoriteList.length} color="error">
           <FavoriteTwoToneIcon />
         </Badge>
       </IconButton>

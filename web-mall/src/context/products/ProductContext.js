@@ -1,7 +1,15 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
+import { favoriteListReducer } from "../reducers/FavoriteReducer";
 
-// Initial state
+// Initial state product list
 const initialState = [];
+
+// Initial state favorite list
+const initialStateFavoriteList = localStorage.getItem("favoriteList")
+  ? JSON.parse(localStorage.getItem("favoriteList"))
+  : {
+      favoriteList: [],
+    };
 
 // create context
 export const ProductContext = createContext();
@@ -10,6 +18,15 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState("");
+
+  const [favoriteListState, favoriteListDispatch] = useReducer(
+    favoriteListReducer,
+    initialStateFavoriteList
+  );
+
+  useEffect(() => {
+    localStorage.setItem("favoriteList", JSON.stringify(favoriteListState));
+  }, [favoriteListState]);
 
   const fetchCategory = (category) => {
     (async () => {
@@ -43,7 +60,15 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, fetchCategory, isLoading, setIsLoading, alert }}
+      value={{
+        products,
+        fetchCategory,
+        isLoading,
+        setIsLoading,
+        alert,
+        favoriteListState,
+        favoriteListDispatch,
+      }}
     >
       {children}
     </ProductContext.Provider>

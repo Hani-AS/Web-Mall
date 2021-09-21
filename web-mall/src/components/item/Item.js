@@ -102,7 +102,7 @@ export const Item = () => {
                 )}
               </CardActions>
               <CardActions className={classes.cardActionSecondary}>
-                <AddToFavoriteBtn />
+                <AddToFavoriteBtn {...{ item }} />
                 <ContinueShoppingBtn />
               </CardActions>
             </Card>
