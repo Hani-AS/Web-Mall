@@ -15,6 +15,7 @@ import {
   ListItemAvatar,
   Avatar,
   Grid,
+  Typography,
 } from "@mui/material";
 
 export const FavoriteDrawer = () => {
@@ -86,9 +87,15 @@ export const FavoriteDrawer = () => {
       </IconButton>
       <Drawer anchor={"right"} open={drawer} onClose={toggleDrawer(false)}>
         {list()}
-        <Button onClick={handleClearList} className={classes.clearListBtn}>
-          clear list
-        </Button>
+        {favoriteList.length > 0 ? (
+          <Button onClick={handleClearList} className={classes.clearListBtn}>
+            clear list
+          </Button>
+        ) : (
+          <Typography m={4} variant="h6" component="h2">
+            List is empty!
+          </Typography>
+        )}
       </Drawer>
     </>
   );
