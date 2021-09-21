@@ -14,7 +14,7 @@ export const favoriteListReducer = (state, action) => {
       };
     case "CLEAR_LIST":
       return {
-        cart: (state.favoriteList = []),
+        favoriteList: (state.favoriteList = []),
       };
     default:
       return state;

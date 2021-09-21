@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../context/products/ProductContext";
 import { Button, Typography } from "@material-ui/core";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CheckIcon from "@mui/icons-material/Check";
 import { useStyles } from "./style";
 
 export const AddToFavoriteBtn = ({ item }) => {
@@ -21,9 +21,8 @@ export const AddToFavoriteBtn = ({ item }) => {
       }}
     >
       <Typography className={classes.cartText} variant="button" component="div">
-        {inList ? "Added to favorite" : "Add to favorite"}
+        {inList ? <CheckIcon /> : "Add to favorite"}
       </Typography>
-      <FavoriteBorderIcon />
     </Button>
   );
 };
