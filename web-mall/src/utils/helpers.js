@@ -1,4 +1,4 @@
-const API = "http://localhost:8080";
+const API = "https://web-mall-hani.herokuapp.com";
 
 export const fetchFromApi = async (endpoint, options) => {
   const { method, body } = { method: "POST", body: null, ...options };
