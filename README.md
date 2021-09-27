@@ -1,5 +1,7 @@
 ### A eCommerce web app created with React, Nodejs, Express, Stripe and Material UI.
 
+<img src="https://github.com/Hani-AS/Web-Mall/blob/main/webmall%20screenshot.png?raw=true" width="800" height="400"/>
+
 ##### Main goal was to explore React and learn about state management. Also exploring the world of payments by implementing Stripe into my project.
 
 Some of the user stories are;
